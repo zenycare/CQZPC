@@ -1,0 +1,85 @@
+<%- include('../layouts/header') %>
+
+<section class="p-4 p-md-5 rounded-4 hero-section mb-4">
+  <div class="row align-items-center">
+    <div class="col-lg-8">
+      <h1 class="display-6 fw-bold mb-3">Website việc làm theo phong cách TopCV</h1>
+      <p class="lead mb-4">Tìm việc theo ngành nghề, địa điểm. Ứng viên đăng ký và nộp CV. Nhà tuyển dụng đăng tin và xem hồ sơ đã apply.</p>
+      <form class="row g-2" method="get" action="/">
+        <div class="col-md-4">
+          <input class="form-control" name="keyword" placeholder="Từ khóa công việc" value="<%= filters.keyword || '' %>">
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" name="career_id">
+            <option value="">Tất cả ngành nghề</option>
+            <% careers.forEach(career => { %>
+              <option value="<%= career.id %>" <%= String(filters.career_id||'')===String(career.id) ? 'selected' : '' %>><%= career.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" name="province">
+            <option value="">Tất cả địa điểm</option>
+            <% locations.forEach(location => { %>
+              <option value="<%= location %>" <%= filters.province===location ? 'selected' : '' %>><%= location %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="col-md-2 d-grid"><button class="btn btn-primary">Tìm việc</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="mb-4">
+  <h3 class="mb-3">Việc làm nổi bật</h3>
+  <div class="row g-3">
+    <% featuredJobs.forEach(job => { %>
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4">
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-2">
+              <span class="badge text-bg-success"><%= job.career_name %></span>
+              <span class="badge text-bg-warning"><%= job.province %></span>
+            </div>
+            <h5 class="card-title"><a class="text-decoration-none" href="/jobs/<%= job.id %>"><%= job.title %></a></h5>
+            <p class="mb-2 text-muted"><%= job.company_name %></p>
+            <p class="small mb-2">Lương: <strong><%= job.salary || 'Thỏa thuận' %></strong></p>
+            <p class="small mb-0">Kinh nghiệm: <%= job.experience %> năm</p>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<section class="row g-4">
+  <div class="col-lg-6">
+    <div class="card rounded-4 shadow-sm border-0">
+      <div class="card-body">
+        <h4 class="mb-3">Công việc theo category</h4>
+        <% careerSections.forEach(item => { %>
+          <div class="d-flex justify-content-between border-bottom py-2">
+            <span><%= item.name %></span>
+            <span class="badge text-bg-primary"><%= item.total_jobs %></span>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card rounded-4 shadow-sm border-0">
+      <div class="card-body">
+        <h4 class="mb-3">Công việc theo địa điểm</h4>
+        <% locationSections.forEach(item => { %>
+          <div class="d-flex justify-content-between border-bottom py-2">
+            <span><%= item.province %></span>
+            <span class="badge text-bg-dark"><%= item.total_jobs %></span>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../layouts/footer') %>

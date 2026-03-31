@@ -1,0 +1,32 @@
+<%- include('../layouts/header') %>
+<h3 class="mb-3">Quản lý tuyển dụng</h3>
+<div class="card rounded-4 shadow-sm border-0"><div class="card-body p-0">
+  <div class="table-responsive">
+    <table class="table table-hover mb-0">
+      <thead><tr><th>Tiêu đề</th><th>Công ty</th><th>Người đăng</th><th>Ngành nghề</th><th>Trạng thái</th><th>Duyệt</th></tr></thead>
+      <tbody>
+      <% jobs.forEach(job => { %>
+        <tr>
+          <td><%= job.title %></td>
+          <td><%= job.company_name %></td>
+          <td><%= job.recruiter_name %></td>
+          <td><%= job.career_name %></td>
+          <td><span class="badge text-bg-secondary"><%= job.status %></span></td>
+          <td>
+            <form action="/admin/jobs/<%= job.id %>/status" method="post" class="d-flex gap-2">
+              <select class="form-select form-select-sm" name="status">
+                <option value="pending" <%= job.status==='pending' ? 'selected' : '' %>>pending</option>
+                <option value="approved" <%= job.status==='approved' ? 'selected' : '' %>>approved</option>
+                <option value="rejected" <%= job.status==='rejected' ? 'selected' : '' %>>rejected</option>
+                <option value="closed" <%= job.status==='closed' ? 'selected' : '' %>>closed</option>
+              </select>
+              <button class="btn btn-sm btn-primary">Lưu</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div></div>
+<%- include('../layouts/footer') %>

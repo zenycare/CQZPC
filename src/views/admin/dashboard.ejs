@@ -1,0 +1,28 @@
+<%- include('../layouts/header') %>
+<h3 class="mb-3">Dashboard admin</h3>
+<div class="row g-3 mb-4">
+  <div class="col-md-6 col-lg-3"><div class="card rounded-4 shadow-sm border-0"><div class="card-body"><div class="text-muted">Ứng viên</div><div class="display-6"><%= stats.total_candidates %></div></div></div></div>
+  <div class="col-md-6 col-lg-3"><div class="card rounded-4 shadow-sm border-0"><div class="card-body"><div class="text-muted">Nhà tuyển dụng</div><div class="display-6"><%= stats.total_employers %></div></div></div></div>
+  <div class="col-md-6 col-lg-3"><div class="card rounded-4 shadow-sm border-0"><div class="card-body"><div class="text-muted">Tin tuyển dụng</div><div class="display-6"><%= stats.total_jobs %></div></div></div></div>
+  <div class="col-md-6 col-lg-3"><div class="card rounded-4 shadow-sm border-0"><div class="card-body"><div class="text-muted">CV ứng tuyển</div><div class="display-6"><%= stats.total_applications %></div></div></div></div>
+</div>
+<div class="card rounded-4 shadow-sm border-0"><div class="card-body">
+  <h5 class="mb-3">Thống kê tuyển dụng gần đây</h5>
+  <div class="table-responsive">
+    <table class="table table-hover mb-0">
+      <thead><tr><th>Tiêu đề</th><th>Công ty</th><th>Ngành nghề</th><th>Trạng thái</th><th>Ngày tạo</th></tr></thead>
+      <tbody>
+      <% recentJobs.forEach(job => { %>
+        <tr>
+          <td><%= job.title %></td>
+          <td><%= job.company_name %></td>
+          <td><%= job.career_name %></td>
+          <td><span class="badge text-bg-secondary"><%= job.status %></span></td>
+          <td><%= new Date(job.created_at).toLocaleDateString('vi-VN') %></td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div></div>
+<%- include('../layouts/footer') %>

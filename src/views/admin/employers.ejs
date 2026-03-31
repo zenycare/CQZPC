@@ -1,0 +1,22 @@
+<%- include('../layouts/header') %>
+<h3 class="mb-3">Quản lý nhà tuyển dụng</h3>
+<div class="card rounded-4 shadow-sm border-0"><div class="card-body p-0">
+  <div class="table-responsive">
+    <table class="table table-hover mb-0">
+      <thead><tr><th>Công ty</th><th>Người đại diện</th><th>Email</th><th>Điện thoại</th><th>Website</th><th>Số tin</th></tr></thead>
+      <tbody>
+      <% employers.forEach(item => { %>
+        <tr>
+          <td><strong><%= item.company_name || 'Chưa cập nhật' %></strong></td>
+          <td><%= item.name %></td>
+          <td><%= item.email %></td>
+          <td><%= item.phone || '' %></td>
+          <td><%= item.company_website || '' %></td>
+          <td><span class="badge text-bg-dark"><%= item.total_jobs %></span></td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div></div>
+<%- include('../layouts/footer') %>

@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">Job Portal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">Trang chủ</a></li>
+        <% if (currentUser?.role === 'candidate') { %>
+          <li class="nav-item"><a class="nav-link" href="/candidate/profile">Hồ sơ</a></li>
+          <li class="nav-item"><a class="nav-link" href="/candidate/applications">Ứng tuyển</a></li>
+        <% } %>
+        <% if (currentUser?.role === 'employer') { %>
+          <li class="nav-item"><a class="nav-link" href="/employer/dashboard">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="/employer/company">Công ty</a></li>
+          <li class="nav-item"><a class="nav-link" href="/employer/jobs">Tin tuyển dụng</a></li>
+          <li class="nav-item"><a class="nav-link" href="/employer/applicants">Ứng viên</a></li>
+        <% } %>
+        <% if (currentUser?.role === 'admin') { %>
+          <li class="nav-item"><a class="nav-link" href="/admin/dashboard">Thống kê</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/jobs">Quản lý tuyển dụng</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/employers">Nhà tuyển dụng</a></li>
+        <% } %>
+      </ul>
+      <div class="d-flex gap-2 align-items-center text-white">
+        <% if (!currentUser) { %>
+          <a href="/login" class="btn btn-outline-light btn-sm">Đăng nhập</a>
+          <a href="/register/candidate" class="btn btn-warning btn-sm">Ứng viên</a>
+          <a href="/register/employer" class="btn btn-info btn-sm">Nhà tuyển dụng</a>
+        <% } else { %>
+          <span class="small">Xin chào, <strong><%= currentUser.name %></strong></span>
+          <form action="/logout" method="post" class="m-0">
+            <button class="btn btn-outline-light btn-sm">Đăng xuất</button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

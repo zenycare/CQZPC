@@ -1,0 +1,28 @@
+<%- include('../layouts/header') %>
+<h3 class="mb-3"><%= job ? 'Cập nhật tin tuyển dụng' : 'Đăng tin tuyển dụng' %></h3>
+<div class="card rounded-4 shadow-sm border-0"><div class="card-body">
+<form method="post" action="<%= action %>" class="row g-3">
+  <div class="col-md-8"><label class="form-label">Tiêu đề</label><input class="form-control" name="title" value="<%= job?.title || '' %>" required></div>
+  <div class="col-md-4"><label class="form-label">Ngành nghề</label><select class="form-select" name="career_id" required><% careers.forEach(c=>{ %><option value="<%= c.id %>" <%= String(job?.career_id||'')===String(c.id)?'selected':'' %>><%= c.name %></option><% }) %></select></div>
+  <div class="col-md-4"><label class="form-label">Loại hình</label><input class="form-control" name="job_type" value="<%= job?.job_type || 'Toàn thời gian' %>"></div>
+  <div class="col-md-4"><label class="form-label">Số lượng tuyển</label><input class="form-control" type="number" name="vacancy" value="<%= job?.vacancy || 1 %>"></div>
+  <div class="col-md-4"><label class="form-label">Mức lương</label><input class="form-control" name="salary" value="<%= job?.salary || '' %>"></div>
+  <div class="col-md-4"><label class="form-label">Cấp bậc</label><input class="form-control" name="job_level" value="<%= job?.job_level || '' %>"></div>
+  <div class="col-md-4"><label class="form-label">Kinh nghiệm</label><input class="form-control" name="experience" value="<%= job?.experience || '' %>"></div>
+  <div class="col-md-4"><label class="form-label">Tên công ty</label><input class="form-control" name="company_name" value="<%= job?.company_name || profile.company_name || '' %>"></div>
+  <div class="col-md-4"><label class="form-label">Website công ty</label><input class="form-control" name="company_website" value="<%= job?.company_website || profile.company_website || '' %>"></div>
+  <div class="col-md-3"><label class="form-label">Tỉnh/Thành</label><input class="form-control" name="province" value="<%= job?.province || '' %>"></div>
+  <div class="col-md-3"><label class="form-label">Quận/Huyện</label><input class="form-control" name="district" value="<%= job?.district || '' %>"></div>
+  <div class="col-md-3"><label class="form-label">Phường/Xã</label><input class="form-control" name="wards" value="<%= job?.wards || '' %>"></div>
+  <div class="col-md-3"><label class="form-label">Hạn nộp hồ sơ</label><input class="form-control" type="date" name="expiration_date" value="<%= job?.expiration_date ? job.expiration_date.toISOString?.().slice(0,10) || job.expiration_date : '' %>"></div>
+  <div class="col-12"><label class="form-label">Địa chỉ chi tiết</label><input class="form-control" name="location_detail" value="<%= job?.location_detail || '' %>"></div>
+  <div class="col-md-6"><label class="form-label">Keywords</label><input class="form-control" name="keywords" value="<%= job?.keywords || '' %>"></div>
+  <div class="col-md-6"><label class="form-label">Tin nổi bật</label><select class="form-select" name="is_featured"><option value="0">Không</option><option value="1" <%= job?.is_featured ? 'selected' : '' %>>Có</option></select></div>
+  <div class="col-12"><label class="form-label">Mô tả công việc</label><textarea class="form-control" rows="5" name="description"><%= job?.description || '' %></textarea></div>
+  <div class="col-12"><label class="form-label">Quyền lợi</label><textarea class="form-control" rows="4" name="benefits"><%= job?.benefits || '' %></textarea></div>
+  <div class="col-12"><label class="form-label">Trách nhiệm</label><textarea class="form-control" rows="4" name="responsibility"><%= job?.responsibility || '' %></textarea></div>
+  <div class="col-12"><label class="form-label">Yêu cầu</label><textarea class="form-control" rows="4" name="qualifications"><%= job?.qualifications || '' %></textarea></div>
+  <div class="col-12"><button class="btn btn-primary">Lưu tin tuyển dụng</button></div>
+</form>
+</div></div>
+<%- include('../layouts/footer') %>

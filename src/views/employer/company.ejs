@@ -1,0 +1,21 @@
+<%- include('../layouts/header') %>
+<div class="row justify-content-center">
+  <div class="col-lg-9">
+    <div class="card rounded-4 shadow-sm border-0"><div class="card-body p-4">
+      <h3 class="mb-3">Trang giới thiệu công ty</h3>
+      <% if (success) { %><div class="alert alert-success"><%= success %></div><% } %>
+      <form method="post" action="/employer/company" enctype="multipart/form-data" class="row g-3">
+        <div class="col-md-6"><label class="form-label">Người đại diện</label><input class="form-control" name="name" value="<%= profile.name || '' %>"></div>
+        <div class="col-md-6"><label class="form-label">Tên công ty</label><input class="form-control" name="company_name" value="<%= profile.company_name || '' %>"></div>
+        <div class="col-md-6"><label class="form-label">Email</label><input class="form-control" value="<%= profile.email || '' %>" disabled></div>
+        <div class="col-md-6"><label class="form-label">Số điện thoại</label><input class="form-control" name="phone" value="<%= profile.phone || '' %>"></div>
+        <div class="col-12"><label class="form-label">Địa chỉ</label><input class="form-control" name="address" value="<%= profile.address || '' %>"></div>
+        <div class="col-md-6"><label class="form-label">Website công ty</label><input class="form-control" name="company_website" value="<%= profile.company_website || '' %>"></div>
+        <div class="col-md-6"><label class="form-label">Logo công ty</label><input class="form-control" type="file" name="company_logo"></div>
+        <div class="col-12"><label class="form-label">Mô tả công ty</label><textarea class="form-control" rows="6" name="company_description"><%= profile.company_description || '' %></textarea></div>
+        <div class="col-12"><button class="btn btn-primary">Lưu thông tin công ty</button></div>
+      </form>
+    </div></div>
+  </div>
+</div>
+<%- include('../layouts/footer') %>

@@ -1,0 +1,31 @@
+<%- include('../layouts/header') %>
+<h3 class="mb-3">Dashboard nhà tuyển dụng</h3>
+<div class="row g-3 mb-4">
+  <div class="col-md-6 col-lg-3"><div class="card rounded-4 shadow-sm border-0"><div class="card-body"><h6>Tổng tin tuyển dụng</h6><div class="display-6"><%= jobs.length %></div></div></div></div>
+  <div class="col-md-6 col-lg-3"><div class="card rounded-4 shadow-sm border-0"><div class="card-body"><h6>Tổng hồ sơ apply</h6><div class="display-6"><%= applicants.length %></div></div></div></div>
+</div>
+<div class="row g-4">
+  <div class="col-lg-6">
+    <div class="card rounded-4 shadow-sm border-0"><div class="card-body">
+      <div class="d-flex justify-content-between align-items-center mb-3"><h5 class="mb-0">Tin tuyển dụng mới nhất</h5><a href="/employer/jobs" class="btn btn-sm btn-primary">Xem tất cả</a></div>
+      <% jobs.slice(0,5).forEach(job => { %>
+        <div class="border-bottom py-2 d-flex justify-content-between">
+          <div><strong><%= job.title %></strong><div class="small text-muted"><%= job.career_name %> - <%= job.status %></div></div>
+          <span class="badge text-bg-dark"><%= job.total_applications %> CV</span>
+        </div>
+      <% }) %>
+    </div></div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card rounded-4 shadow-sm border-0"><div class="card-body">
+      <div class="d-flex justify-content-between align-items-center mb-3"><h5 class="mb-0">Ứng viên mới nhất</h5><a href="/employer/applicants" class="btn btn-sm btn-primary">Xem tất cả</a></div>
+      <% applicants.slice(0,5).forEach(item => { %>
+        <div class="border-bottom py-2">
+          <strong><%= item.candidate_name %></strong> apply <strong><%= item.title %></strong>
+          <div class="small text-muted"><%= item.candidate_email %> - <%= item.candidate_phone || 'Chưa có SĐT' %></div>
+        </div>
+      <% }) %>
+    </div></div>
+  </div>
+</div>
+<%- include('../layouts/footer') %>

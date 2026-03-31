@@ -1,0 +1,19 @@
+<%- include('../layouts/header') %>
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card rounded-4 shadow-sm border-0"><div class="card-body p-4">
+      <h3 class="mb-3">Đăng ký nhà tuyển dụng</h3>
+      <% if (error) { %><div class="alert alert-danger"><%= error %></div><% } %>
+      <form method="post" action="/register/employer" class="row g-3">
+        <div class="col-md-6"><label class="form-label">Người đại diện</label><input class="form-control" name="name" required></div>
+        <div class="col-md-6"><label class="form-label">Tên công ty</label><input class="form-control" name="companyName" required></div>
+        <div class="col-md-6"><label class="form-label">Email</label><input class="form-control" type="email" name="email" required></div>
+        <div class="col-md-6"><label class="form-label">Mật khẩu</label><input class="form-control" type="password" name="password" required></div>
+        <div class="col-md-6"><label class="form-label">Số điện thoại</label><input class="form-control" name="phone"></div>
+        <div class="col-md-6"><label class="form-label">Địa chỉ</label><input class="form-control" name="address"></div>
+        <div class="col-12"><button class="btn btn-primary">Tạo tài khoản nhà tuyển dụng</button></div>
+      </form>
+    </div></div>
+  </div>
+</div>
+<%- include('../layouts/footer') %>

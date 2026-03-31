@@ -1,0 +1,21 @@
+<%- include('../layouts/header') %>
+<h3 class="mb-3">Hồ sơ ứng viên đã apply CV</h3>
+<div class="card rounded-4 shadow-sm border-0"><div class="card-body p-0">
+  <div class="table-responsive">
+    <table class="table table-hover mb-0">
+      <thead><tr><th>Ứng viên</th><th>Công việc</th><th>Headline</th><th>CV</th><th>Ngày apply</th></tr></thead>
+      <tbody>
+      <% applicants.forEach(item => { %>
+        <tr>
+          <td><strong><%= item.candidate_name %></strong><div class="small text-muted"><%= item.candidate_email %> - <%= item.candidate_phone || 'Chưa có SĐT' %></div></td>
+          <td><%= item.title %></td>
+          <td><%= item.headline || '' %></td>
+          <td><a href="<%= item.cv_file %>" target="_blank">Xem CV</a></td>
+          <td><%= new Date(item.created_at).toLocaleDateString('vi-VN') %></td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div></div>
+<%- include('../layouts/footer') %>

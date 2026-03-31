@@ -1,0 +1,63 @@
+<%- include('../layouts/header') %>
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="card rounded-4 shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex gap-2 flex-wrap mb-2">
+          <span class="badge text-bg-primary"><%= job.career_name %></span>
+          <span class="badge text-bg-success"><%= job.province %></span>
+          <span class="badge text-bg-secondary"><%= job.job_type %></span>
+        </div>
+        <h2 class="mb-2"><%= job.title %></h2>
+        <p class="text-muted mb-4"><%= job.company_name %></p>
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="alert alert-danger"><%= error %></div>
+        <% } %>
+        <p><strong>Lương:</strong> <%= job.salary || 'Thỏa thuận' %></p>
+        <p><strong>Cấp bậc:</strong> <%= job.job_level %></p>
+        <p><strong>Kinh nghiệm:</strong> <%= job.experience %> năm</p>
+        <p><strong>Địa chỉ:</strong> <%= job.location_detail || job.province %></p>
+        <hr>
+        <h5>Mô tả công việc</h5>
+        <div><%- job.description %></div>
+        <h5 class="mt-4">Quyền lợi</h5>
+        <div><%- job.benefits || '<p>Đang cập nhật</p>' %></div>
+        <h5 class="mt-4">Trách nhiệm</h5>
+        <div><%- job.responsibility || '<p>Đang cập nhật</p>' %></div>
+        <h5 class="mt-4">Yêu cầu</h5>
+        <div><%- job.qualifications || '<p>Đang cập nhật</p>' %></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card rounded-4 shadow-sm border-0 mb-3">
+      <div class="card-body">
+        <h5>Thông tin công ty</h5>
+        <% if (job.company_logo) { %><img src="<%= job.company_logo %>" class="img-fluid rounded mb-3" alt="logo"><% } %>
+        <p><strong><%= job.company_name %></strong></p>
+        <p><%= job.company_description || 'Nhà tuyển dụng chưa cập nhật mô tả.' %></p>
+        <% if (job.company_website) { %><a href="<%= job.company_website %>" target="_blank"><%= job.company_website %></a><% } %>
+      </div>
+    </div>
+    <% if (currentUser?.role === 'candidate') { %>
+      <div class="card rounded-4 shadow-sm border-0">
+        <div class="card-body">
+          <% if (applied) { %>
+            <button class="btn btn-success w-100" disabled>Đã ứng tuyển</button>
+          <% } else { %>
+            <form action="/jobs/<%= job.id %>/apply" method="post">
+              <div class="mb-3">
+                <label class="form-label">Lời nhắn</label>
+                <textarea class="form-control" name="note" rows="4" placeholder="Giới thiệu ngắn gọn khi ứng tuyển"></textarea>
+              </div>
+              <button class="btn btn-primary w-100">Ứng tuyển bằng CV</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    <% } else if (!currentUser) { %>
+      <div class="alert alert-warning">Bạn cần đăng nhập bằng tài khoản ứng viên để nộp CV.</div>
+    <% } %>
+  </div>
+</div>
+<%- include('../layouts/footer') %>

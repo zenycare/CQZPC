@@ -1,0 +1,13 @@
+body {
+  background: #f5f7fb;
+}
+.hero-section {
+  background: linear-gradient(135deg, #0d6efd 0%, #6f42c1 100%);
+  color: white;
+}
+.card {
+  overflow: hidden;
+}
+.table > :not(caption) > * > * {
+  vertical-align: middle;
+}
