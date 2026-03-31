@@ -20,6 +20,9 @@ router.get('/', async (req, res) => {
     filters: req.query,
     ...data
   });
+
+
+  
 });
 
 router.get('/jobs/:id', async (req, res) => {
