@@ -1,3 +1,13 @@
+-Tên thành viên nhóm
+1/Phạm Hồng Cẩn
+2/Nguyễn Tuấn Cường
+3/Nguyễn Thị Cẩm Giang
+4/Phạm Yến Nhi
+5/Ngô Thị Hồng Quí
+
+-Tên đề tài: Website tìm kiếm việc làm
+
+
 # JOB PORTAL NODE.JS + EXPRESS + MYSQL
 
 Dự án này được build theo yêu cầu đồ án web việc làm:
