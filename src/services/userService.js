@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+
 const pool = require('../config/db');
 
 async function findByEmail(email) {

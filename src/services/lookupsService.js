@@ -1,3 +1,4 @@
+
 const pool = require('../config/db');
 
 async function getCareers() {

@@ -1,3 +1,4 @@
+
 const { COOKIE_NAME, verifyToken } = require('../utils/auth');
 
 function attachUser(req, res, next) {
