@@ -1,3 +1,4 @@
+-Nhóm QCZPC
 -Tên thành viên nhóm
 1/Phạm Hồng Cẩn
 2/Nguyễn Tuấn Cường
@@ -16,6 +17,9 @@ Dự án này được build theo yêu cầu đồ án web việc làm:
 - Admin: quản lý tuyển dụng, duyệt tin, quản lý nhà tuyển dụng, thống kê
 - Trang chủ: hiển thị việc làm theo category và địa điểm
 - Công nghệ: Node.js, Express, EJS, MySQL, JWT cookie auth
+
+Kết quả đạt được : các user sẽ đăng nhập vào để tham gia tìm kiếm và ứng tuyển công việc
+các nhà tuyển dụng sẽ nhận được hồ sơ và xét duyệt nhân viên
 
 ## 1) Cài đặt môi trường
 - Cài Node.js LTS
